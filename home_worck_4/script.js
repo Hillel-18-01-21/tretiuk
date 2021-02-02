@@ -3,14 +3,38 @@ let log = [];
 function promptCalc(log) {
   let result;
   let operation;
-  const operations = ["sin", "+", "-", "*", "/", "history", "exit"];
+  const interfaceOptions = ["history", "exit"];
+  const twoOperandOptions = ["+", "-", "*", "/", "min", "max"];
+  const oneOperandOptions = ["sin"];
   let firstOperand;
   let secondOperand;
   let trigger;
   let logString = "";
   let exit = true;
 
-  //   My math object
+  alert("Hello!");
+  do {
+    // Enter
+    do {
+
+      operation = prompt(
+        "Enter one of type operation '+', '-', '*','/', 'sin' or enter 'exit'"
+      ).toLowerCase();
+      trigger =
+        twoOperandOptions.includes(operation) ||
+        interfaceOptions.includes(operation) ||
+        oneOperandOptions.includes(operation);
+    } while (!trigger);
+
+    // Input data
+    inputData(operation);
+
+    // Exit
+    exit = confirm("Do you want to continue calculating?");
+
+  } while (exit);
+
+  //  My math object
   const myMath = {
     sum: function (a, b) {
       return a + b;
@@ -30,56 +54,35 @@ function promptCalc(log) {
     sin: (operand) => {
       return Math.sin(operand);
     },
+    min: (a, b) => {
+      return a < b ? a : b;
+    },
+
+    max: (a, b) => {
+      return a > b ? a : b;
+    },
   };
 
-//   const sum = function (a, b) {
-//     return a + b;
-//   };
+  // Interface option object
 
-  const diff = function (a, b) {
-    return a - b;
-  };
-
-  const mult = function (a, b) {
-    return a * b;
-  };
-
-  const div = function (a, b) {
-    if (b === 0) return "math error: you cannot divide by zero";
-    return a / b;
-  };
-
-  const sin = (operand) => {
-    return Math.sin(operand);
-  };
-
-  const math = function (a, b, option) {
-    return option(a, b);
-  };
-
-  alert("Hello!");
-  do {
-    do {
-      operation = prompt("Enter one of type operation '+', '-', '*','/', 'sin' or enter 'exit'").toLowerCase();
-      trigger = operations.includes(operation);
-    } while (!trigger);
-
-    if (operation === "exit") {
+  const InterfaceOptions = {
+    exit: () => {
       exit = !exit;
-    } else if (operation === "history") {
+    },
+    history: () => {
       log.forEach((elem) => {
         logString += `${elem}\n`;
-      });   
-      calcFunctions(operation, firstOperand);
-    } else if (operation === "sin") {
-      //
+      });
+      renderLog(logString);
+    },
+  };
 
-      do {
-        firstOperand = Number(prompt("Enter operand"));
-      } while (isNaN(firstOperand));
-
-      calcFunctions(operation, firstOperand);
-    } else {
+  function inputData(operation) {
+    // interface option
+    if (interfaceOptions.includes(operation)) {
+      InterfaceOptions[operation]();
+    } else if (twoOperandOptions.includes(operation)) {
+      console.log("test");
       do {
         firstOperand = Number(prompt("Enter first operand"));
       } while (isNaN(firstOperand));
@@ -87,62 +90,60 @@ function promptCalc(log) {
       do {
         secondOperand = Number(prompt("Enter second operand"));
       } while (isNaN(secondOperand));
-      calcFunctions(operation, firstOperand, secondOperand);
-    }
-    exit = confirm('Do you want to continue calculating?');
-  } while (exit);
 
-  // Calc options
+      calcFunctions(operation, firstOperand, secondOperand);
+    } else if (oneOperandOptions.includes(operation)) {
+      do {
+        firstOperand = Number(prompt("Enter operand"));
+      } while (isNaN(firstOperand));
+
+      calcFunctions(operation, firstOperand);
+    }
+  }
+
+  // Calc options worker
   function calcFunctions(operation, firstOperand, secondOperand) {
     switch (operation) {
       case "history":
-        renderLog(logString);
+        logString = InterfaceOptions.history();
         break;
-      // with maMath object
       case "+":
-        result = myMath.sum(
-          firstOperand,
-          secondOperand
-        );
+        result = myMath.sum(firstOperand, secondOperand);
         //--------------------------------
-        render(result, 'plus');
+        render(result, "plus");
         break;
       case "-":
-        result = math(
-          firstOperand,
-          secondOperand,
-          diff
-        );
-        render(result, 'diff');
+        result = myMath.diff(firstOperand, secondOperand);
+        render(result, "diff");
         break;
-
       case "*":
-        result = math(
-          firstOperand,
-          secondOperand,
-          mult
-        );
-        render(result, 'mult');
+        result = myMath.mult(firstOperand, secondOperand);
+        render(result, "mult");
         break;
       case "/":
-        result = math(
-          firstOperand,
-          secondOperand,
-          div
-        );
-        render(result, 'div');
+        result = myMath.div(firstOperand, secondOperand);
+        render(result, "div");
         break;
       case "sin":
-        result = sin(firstOperand);
-        render(result, 'sin');
+        result = myMath.sin(firstOperand);
+        render(result, "sin");
+        break;
+      case "min":
+        result = myMath.min(firstOperand, secondOperand);
+        render(result, "min");
+        break;
+      case "max":
+        result = myMath.max(firstOperand, secondOperand);
+        render(result, "max");
         break;
       case "exit":
-        exit = !exit;
         break;
       default:
-        alert("Нет таких операций");
+        alert("Демоны");
     }
   }
+
+  // Output
 
   // Output and rendering results
   function render(result, operation) {
