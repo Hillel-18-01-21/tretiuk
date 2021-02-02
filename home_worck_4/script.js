@@ -14,7 +14,7 @@ function promptCalc(log) {
 
   alert("Hello!");
   do {
-    // Enter
+    // Enter and validation
     do {
 
       operation = prompt(
