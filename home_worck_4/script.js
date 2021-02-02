@@ -81,7 +81,6 @@ function promptCalc(log) {
     if (interfaceOptions.includes(operation)) {
       InterfaceOptions[operation]();
     } else if (twoOperandOptions.includes(operation)) {
-      console.log("test");
       do {
         firstOperand = Number(prompt("Enter first operand"));
       } while (isNaN(firstOperand));
@@ -152,8 +151,8 @@ function promptCalc(log) {
     // Alert result
     alert(`Operation ${operation} finished with result ${result}`);
 
-    // result = undefined;
-    // operation = undefined
+    result = undefined;
+    operation = undefined
   }
 
   // Output and rendering history
@@ -163,7 +162,7 @@ function promptCalc(log) {
     alert(logString);
   }
   logString = undefined;
-  // operation = undefined
+  operation = undefined
 }
 
 // Get button
