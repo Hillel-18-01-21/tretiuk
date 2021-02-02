@@ -12,6 +12,48 @@ function promptCalc(log) {
   let logString = "";
   let exit = true;
 
+    //  My math object
+    const myMath = {
+      sum: function (a, b) {
+        return a + b;
+      },
+  
+      diff: function (a, b) {
+        return a - b;
+      },
+  
+      mult: function (a, b) {
+        return a * b;
+      },
+      div: function (a, b) {
+        if (b === 0) return "math error: you cannot divide by zero";
+        return a / b;
+      },
+      sin: (operand) => {
+        return Math.sin(operand);
+      },
+      min: (a, b) => {
+        return a < b ? a : b;
+      },
+  
+      max: (a, b) => {
+        return a > b ? a : b;
+      },
+    };
+  
+    // Interface option object
+    const InterfaceOptions = {
+      exit: () => {
+        exit = !exit;
+      },
+      history: () => {
+        log.forEach((elem) => {
+          logString += `${elem}\n`;
+        });
+        renderLog(logString);
+      },
+    };
+
   alert("Hello!");
   do {
     // Enter and validation
@@ -33,48 +75,6 @@ function promptCalc(log) {
     exit = confirm("Do you want to continue calculating?");
 
   } while (exit);
-
-  //  My math object
-  const myMath = {
-    sum: function (a, b) {
-      return a + b;
-    },
-
-    diff: function (a, b) {
-      return a - b;
-    },
-
-    mult: function (a, b) {
-      return a * b;
-    },
-    div: function (a, b) {
-      if (b === 0) return "math error: you cannot divide by zero";
-      return a / b;
-    },
-    sin: (operand) => {
-      return Math.sin(operand);
-    },
-    min: (a, b) => {
-      return a < b ? a : b;
-    },
-
-    max: (a, b) => {
-      return a > b ? a : b;
-    },
-  };
-
-  // Interface option object
-  const InterfaceOptions = {
-    exit: () => {
-      exit = !exit;
-    },
-    history: () => {
-      log.forEach((elem) => {
-        logString += `${elem}\n`;
-      });
-      renderLog(logString);
-    },
-  };
 
   function inputData(operation) {
     // interface option
@@ -152,7 +152,8 @@ function promptCalc(log) {
     // Alert result
     alert(`Operation ${operation} finished with result ${result}`);
 
-    result = undefined;
+    // result = undefined;
+    // operation = undefined
   }
 
   // Output and rendering history
@@ -161,6 +162,8 @@ function promptCalc(log) {
     // Alert log
     alert(logString);
   }
+  logString = undefined;
+  // operation = undefined
 }
 
 // Get button
