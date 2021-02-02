@@ -18,7 +18,7 @@ function promptCalc(log) {
     do {
 
       operation = prompt(
-        "Enter one of type operation '+', '-', '*','/', 'sin' or enter 'exit'"
+        "Enter one of type operation '+', '-', '*','/', 'sin', 'min', 'max' or enter 'exit'"
       ).toLowerCase();
       trigger =
         twoOperandOptions.includes(operation) ||
@@ -64,7 +64,6 @@ function promptCalc(log) {
   };
 
   // Interface option object
-
   const InterfaceOptions = {
     exit: () => {
       exit = !exit;
@@ -109,7 +108,6 @@ function promptCalc(log) {
         break;
       case "+":
         result = myMath.sum(firstOperand, secondOperand);
-        //--------------------------------
         render(result, "plus");
         break;
       case "-":
@@ -165,6 +163,8 @@ function promptCalc(log) {
   }
 }
 
+// Get button
 const startCalc = document.getElementsByTagName("button");
 
+// Action button
 startCalc[0].addEventListener("click", () => promptCalc(log));
