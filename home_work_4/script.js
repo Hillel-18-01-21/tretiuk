@@ -1,6 +1,7 @@
 let log = [];
 
 function promptCalc(log) {
+  
   let result;
   let operation;
   const interfaceOptions = ["history", "exit"];
