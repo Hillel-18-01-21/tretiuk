@@ -1,10 +1,10 @@
 function promptSort() {
   let result = [];
-  let count = +enterNum("Enter count numbers for sort:");
 
-  while (count < 3) {
-    count = +enterNum("Enter count numbers for sort:");
-  } 
+  do {
+    count = enterNum("Enter count numbers for sort:");
+  } while (count < 3)
+  
   for (let i = 0; i < count; i++) {
     result.push(enterNum("enter number"));
   }
