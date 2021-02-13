@@ -1,6 +1,6 @@
 function promptSort() {
   let result = [];
-
+  let count;
   do {
     count = enterNum("Enter count numbers for sort:");
   } while (count < 3)
@@ -21,9 +21,9 @@ function enterNum(desc) {
 
 function sort(arr) {
   let tmp;
-
-  for (let i = 0; i < arr.length; i++) {
-    for (let k = 0; k < arr.length; k++) {
+  const len = arr.length
+  for (let i = 0; i < len; i++) {
+    for (let k = 0; k < len; k++) {
       if (arr[i] < arr[k]) {
         tmp = arr[i];
         arr[i] = arr[k];
