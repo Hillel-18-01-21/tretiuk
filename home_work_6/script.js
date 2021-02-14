@@ -3,7 +3,7 @@ function processTheArray(arr) {
     arr = enterData();
   }
 
-  let result = selectOperation(arr, prompt("Enter operation: 'sort', '%3', 'join', 'min','max'."));
+  let result = selectOperation(arr, prompt("Enter operation: 'upsort', 'downsort' '%3', 'join', 'min','max'.").toLocaleLowerCase());
   alert(result);
   if (confirm("Do you wont repeat operation?")) {
     if (confirm("Do you wont enter a new data?")) {
@@ -17,8 +17,10 @@ function processTheArray(arr) {
 
 function selectOperation(arr, operation) {
   switch (operation) {
-    case "sort":
+    case "upsort":
       return sortUp(arr);
+    case "downsort":
+      return sortDown(arr);
     case "%3":
       return multThree(arr);
     case "join":
@@ -38,8 +40,8 @@ function enterData() {
   let str = prompt("Enter numbers with coma:");
   result = str.split(",");
   result.forEach((elem, i, result) => {
-    console.log(+elem);
-    if (isNaN(+elem) || result.length < 2) {
+    result[i] = +elem
+    if (isNaN(elem) || result.length < 2) {
       enterData();
     }
   });
@@ -101,9 +103,9 @@ function sortDown(arr) {
   for (let i = 0; i < len; i++) {
     for (let k = 0; k < len; k++) {
       if (arr[i] > arr[k]) {
-        tmp = arr[i];
-        arr[i] = arr[k];
-        arr[k] = tmp;
+        tmp = arr[k];
+        arr[k] = arr[i];
+        arr[i] = tmp;
       }
     }
   }
