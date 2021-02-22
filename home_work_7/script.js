@@ -3,6 +3,7 @@ const inputArea = document.querySelector("#input");
 const taskList = document.querySelector("#taskList");
 const delBTN =  document.querySelector("#delBTN");
 
+let history = [];
 
 console.dir(addBTN);
 console.dir(inputArea);
@@ -12,32 +13,24 @@ addBTN.addEventListener("click", () => onAddTask());
 
 taskList.addEventListener("click",(e) => onCompleteTask(e));
 
-delBTN.addEventListener("click",() => onDeleteTask());
+delBTN.addEventListener("click",() => onDeleteTasks());
 
-function onDeleteTask () {
-  const tasks = document.getElementsByClassName("task")
-
-  for (let i = 0 ; i < tasks.length; i++) {
-    if (tasks[i].dataComplete){
-
-      tasks[i].remove();
-
-    }
-  }
+function onDeleteTasks () {
+  const tasks = document.getElementsByClassName("task");
+  [...tasks].forEach(elem => elem.dataComplete? elem.remove():elem);
 }
 
 function onCompleteTask(e){
   const completedTask = e.target;
   const taskTextElem = completedTask.nextElementSibling;
 
-  if (completedTask.checked && taskTextElem.className == "task-complete") {
+  if (completedTask.checked && taskTextElem.className === "task-complete") {
     taskTextElem.className = "";
     completedTask.checked = false;
     completedTask.parentElement.dataComplete = false;
-  } else {
+  }else if (completedTask.checked){
     taskTextElem.className = "task-complete";
     completedTask.parentElement.dataComplete = true;
-    console.dir(completedTask.parentElement);
   }
 }
 
@@ -53,8 +46,6 @@ function onAddTask() {
     const taskRadio = document.createElement("input");
     taskRadio.type = "radio";
     taskRadio.className = 'complete';
-    console.dir(taskRadio.checked);
-    taskRadio.className = "taskCompleteRadio";
   
     newTask.appendChild(taskRadio);
     newTask.appendChild(textTask);
