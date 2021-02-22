@@ -3,12 +3,6 @@ const inputArea = document.querySelector("#input");
 const taskList = document.querySelector("#taskList");
 const delBTN =  document.querySelector("#delBTN");
 
-let history = [];
-
-console.dir(addBTN);
-console.dir(inputArea);
-console.dir(taskList);
-
 addBTN.addEventListener("click", () => onAddTask());
 
 taskList.addEventListener("click",(e) => onCompleteTask(e));
@@ -24,12 +18,12 @@ function onCompleteTask(e){
   const completedTask = e.target;
   const taskTextElem = completedTask.nextElementSibling;
 
-  if (completedTask.checked && taskTextElem.className === "task-complete") {
-    taskTextElem.className = "";
+  if (completedTask.checked && taskTextElem.className === "task-text task-text-complete") {
+    taskTextElem.classList.remove("task-text-complete");
     completedTask.checked = false;
     completedTask.parentElement.dataComplete = false;
   }else if (completedTask.checked){
-    taskTextElem.className = "task-complete";
+    taskTextElem.classList.add("task-text-complete");
     completedTask.parentElement.dataComplete = true;
   }
 }
@@ -41,6 +35,7 @@ function onAddTask() {
   
     const textTask = document.createElement("p");
     textTask.innerText = inputArea.value;
+    textTask.className = 'task-text';
     inputArea.value = "";
 
     const taskRadio = document.createElement("input");

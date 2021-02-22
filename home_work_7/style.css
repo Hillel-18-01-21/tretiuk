@@ -17,20 +17,20 @@ h2 {
   align-items: center;
 }
 
-.task {
+.task{
   display: flex;
+  align-items:center;
+}
+
+.task-text {
+  display: flex;
+  align-items:center;
+  margin:0% 0%  0% 1%;
 }
 
 
 
-.task-complete {
+.task-text-complete {
   text-decoration: line-through;
 }
 
-button {
-  display: block;
-  margin: auto auto;
-  padding: 20px 8%;
-  font-size: 1rem;
-  
-}
