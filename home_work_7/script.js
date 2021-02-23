@@ -3,9 +3,11 @@ const inputArea = document.querySelector("#input");
 const taskList = document.querySelector("#taskList");
 const delBTN =  document.querySelector("#delBTN");
 
+
 addBTN.addEventListener("click", () => onAddTask());
 
 taskList.addEventListener("click",(e) => onCompleteTask(e));
+
 
 delBTN.addEventListener("click",() => onDeleteTasks());
 
@@ -39,13 +41,12 @@ function onAddTask() {
     inputArea.value = "";
 
     const taskRadio = document.createElement("input");
-    taskRadio.type = "radio";
-    taskRadio.className = 'complete';
+    taskRadio.type = "checkbox";
+    taskRadio.className = 'radio-complete';
   
-    newTask.appendChild(taskRadio);
+    newTask.append(taskRadio);
     newTask.appendChild(textTask);
-    taskList.appendChild(newTask);
+    taskList.prepend(newTask);
   }
-
 }
 
