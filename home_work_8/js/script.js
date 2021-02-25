@@ -4,6 +4,7 @@ const figureEl = document.getElementById("figure");
 
 const FORMS = ["square", "circle", "rectangle"];
 let selectedColor = "black";
+let previousFormClass = "black";
 
 window.onload = render;
 
@@ -15,7 +16,9 @@ function render() {
 
 selectFormEl.addEventListener("change", (e) => {
   let { value } = e.target;
-  figureEl.className = value;
+  figureEl.classList.toggle(previousFormClass);
+  figureEl.classList.toggle(value);
+  previousFormClass = value;
 });
 
 
