@@ -1,10 +1,18 @@
+const ENTER_KEY_CODE = 13;
+
 const addBTN = document.querySelector("#addBTN");
 const inputArea = document.querySelector("#input");
 const taskList = document.querySelector("#taskList");
 const delBTN =  document.querySelector("#delBTN");
 
 
+
 addBTN.addEventListener("click", () => onAddTask());
+addBTN.addEventListener("keypress", (e) => {
+  if ( e.keyCode === ENTER_KEY_CODE && !e.altKey ) {
+    onAddTask()
+  }
+});
 
 taskList.addEventListener("click",(e) => onCompleteTask(e));
 
