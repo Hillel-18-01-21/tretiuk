@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEndPro</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+    <div class="title">
+        <h1>Домашнее задание №9</h1>
+        <h2>Калькулятор V3.0</h2>
+    </div>
+    <div class="container">
+
+        <input type="number" class="empty" id="firstOperand"></input>
+
+        <select id="operation">
+            <option disabled>Select operation</option>
+            <option value="add">add</option>
+            <option value="sub">subtract</option>
+            <option value="div">divide</option>
+            <option value="mult">multiply</option>
+        </select>
+
+        <input type="number" class="empty" id="twoOperand"></input>
+        <button id="calculate">Calculate</button>
+    </div>
+
+    <div class="result" id="result">
+
+    </div>
+
+    <script type="text/template" id="resultTemplate">
+        <div id="result-tmp">
+            <span>{{firstOperand}} {{operation}} {{secondOperand}} {{result}}</span>
+        </div>
+    </script>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
