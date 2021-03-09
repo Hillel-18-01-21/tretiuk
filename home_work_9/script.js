@@ -9,8 +9,8 @@ let operation = "add";
 let firstOperand;
 let secondOperand;
 
-firstOperandEl.addEventListener("change", (e) => firstOperand = onInput(e.target));
-secondOperandEl.addEventListener("change", (e) => secondOperand = onInput(e.target));
+firstOperandEl.addEventListener("blur", (e) => firstOperand = onInput(e.target));
+secondOperandEl.addEventListener("blur", (e) => secondOperand = onInput(e.target));
 operationEl.addEventListener("change", (e) => operation = e.target.value);
 calculateBTN.addEventListener("click", () => calcFunctions(operation, firstOperand, secondOperand));
 
@@ -54,6 +54,6 @@ function calcFunctions(operation, firstOperand, secondOperand) {
       break;
 
     default:
-      alert("Демоны");
+      alert("error");
   }
 }
