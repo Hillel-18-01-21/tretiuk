@@ -16,7 +16,7 @@
     </div>
     <div class="container">
 
-        <input type="number" class="empty" id="firstOperand"></input>
+        <input type="number" class="" id="firstOperand"></input>
 
         <select id="operation">
             <option disabled>Select operation</option>
@@ -26,7 +26,7 @@
             <option value="mult">multiply</option>
         </select>
 
-        <input type="number" class="empty" id="twoOperand"></input>
+        <input type="number" class="" id="twoOperand"></input>
         <button id="calculate">Calculate</button>
     </div>
 
@@ -36,7 +36,7 @@
 
     <script type="text/template" id="resultTemplate">
         <div id="result-tmp">
-            <span>{{firstOperand}} {{operation}} {{secondOperand}} {{result}}</span>
+            <span>{{firstOperand}} {{operation}} {{secondOperand}} result {{result}}</span>
         </div>
     </script>
 
