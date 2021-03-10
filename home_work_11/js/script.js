@@ -4,7 +4,7 @@ let onFibCounters = [];
 
 buttons.forEach((elem, i) => {
   onFibCounters[i] = fib(elem);
-  elem.addEventListener("click", (elem) => onFibCounters[i](elem, i));
+  elem.addEventListener("click", (elem) => onFibCounters[i](elem));
 });
 
 function fib(target) {
