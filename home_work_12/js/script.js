@@ -18,22 +18,22 @@ const students = [
 
 
 function getAvgMark() { 
-  return this.marks.reduce((a, b) => a + b)/ this.marks.length
-} // средняя оценка студента
+  return this.marks.reduce((a, b) => a + b)/ this.marks.length;
+}; // средняя оценка студента
 
 
 function getMaxMark() {
-  return Math.max(...this.marks)
-} // максимальна оценка студента
+  return Math.max(...this.marks);
+}; // максимальна оценка студента
 
 
 function setAttend() { // увличить счетчик посещений студента
-  ++this.attends
-}
+  ++this.attends;
+};
 
 function getInfo() {
-  return `Student name: ${this.name}, average mark: ${this.marks.reduce((a, b) => a + b)/ this.marks.length}, classes attended ${this.attends} `
-} // возвращаем строку с именем студента, средней оценкой и колличеством посещений
+  return `Student name: ${this.name}, average mark: ${this.marks.reduce((a, b) => a + b)/ this.marks.length}, classes attended ${this.attends}`;
+}; // возвращаем строку с именем студента, средней оценкой и колличеством посещений
 
 
 const studentsFunc = students.map(student => {
@@ -45,17 +45,17 @@ const studentsFunc = students.map(student => {
     getInfo: getInfo.bind(student)
   }
 
-})
+});
 
 studentsFunc.forEach((studentFunc, i) => {
-  console.log(`Sudent id: #${++i}`)
-  console.log(`Average mark: ${studentFunc.getAvgMark()}`)
-  console.log(`Max mark: ${studentFunc.getMaxMark()}`)
-  studentFunc.setAttend()
-  console.log(studentFunc.getInfo())
+  console.log(`Sudent id: #${++i}`);
+  console.log(`Average mark: ${studentFunc.getAvgMark()}`);
+  console.log(`Max mark: ${studentFunc.getMaxMark()}`);
+  studentFunc.setAttend();
+  console.log(studentFunc.getInfo());
 
-})
+});
 
 
 
-console.log(students)
+console.log(students);
